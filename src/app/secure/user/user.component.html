@@ -1,0 +1,111 @@
+<ngx-datatable class="material" [rows]="users" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true"
+    [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count">
+    <ngx-datatable-column [resizeable]="false" [width]="40">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            No
+        </ng-template>
+        <ng-template let-rowIndex="rowIndex"  ngx-datatable-cell-template>
+            {{rowIndex + 1}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Name
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <a [href]="'https://'+row.domain" target="_blank">{{row.storeName}}</a>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" [width]="250">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Email
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.email}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" >
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Phone
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.phone}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" >
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Shopify Plan
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.plan_display_name}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" >
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Current Plan
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.recurringPlanName}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" >
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Credit
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.credit}}
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column [resizeable]="false" >
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Get Access
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <button  (click)="getAccess(row)">Access</button>
+        </ng-template>
+    </ngx-datatable-column>
+
+
+
+    <!-- <ngx-datatable-column [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          Product Id
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.id}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          Product Type
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.product_type}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          Variants
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row.variants.length}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [resizeable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          Action
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div class="secondary-btn">
+            <button  (click)="generateDiscription(row)">Run AI</button>
+          </div>
+        </ng-template>
+      </ngx-datatable-column> -->
+</ngx-datatable>
