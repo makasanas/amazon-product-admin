@@ -11,12 +11,7 @@ export class SecureComponent implements OnInit {
 
 
   constructor(private router: Router, private secureService: SecureService) { 
-    // this.secureService.checkToken().subscribe((res) => {
-    // }, err => {
-    //   localStorage.removeItem('token');
-    //   localStorage.removeItem('shopUrl');
-    //   this.router.navigate(['/login']);
-    // });
+   
   }
 
   ngOnInit() {
