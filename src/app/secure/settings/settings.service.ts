@@ -6,17 +6,17 @@ import { environment } from '../../../environments/environment';
 @Injectable({
     providedIn: 'root'
 })
-export class SidebarsService {
+export class SettingsService {
 
     constructor(private http: Http) { }
 
     createAuthorizationHeader(headers: Headers) {
         headers.append('Authorization', localStorage.getItem('token').replace(/\"/g, ""));
     }
+
     getUser() {
         let headers = new Headers();
         this.createAuthorizationHeader(headers);
         return this.http.get(environment.apiUrl + 'admin/profile', { headers: headers }).pipe(map((response: any) => response.json()));
     }
-
 }

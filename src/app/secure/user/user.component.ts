@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "./user.service";
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-user',
@@ -40,13 +41,9 @@ export class UserComponent implements OnInit {
   getAccess(row){
 
     this.userService.getAccessToken(row.shopUrl).subscribe((res) => {
-      // console.log(res.data);
-      // this.users = res.data.users;
-      // console.log(this.users);
-      // this.page.count = res.data.count;
       console.log(res.data);
       console.log(window.location);
-      let url = 'http://localhost:4200/app/auth?token='+res.data.token;
+      let url = environment.appUrl+'/app/auth?token='+res.data.token;
       console.log(url);
        window.open(url, '_blank');
     }, err => {

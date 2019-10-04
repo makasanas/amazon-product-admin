@@ -6,6 +6,7 @@
     <div class="image">
       <a routerLink="/">
         <img src="assets/logo-white.png">
+        <p>ADMIN</p>
       </a>
     </div>
   </div>
@@ -31,7 +32,7 @@
     </li>
     <ul [ngClass]="isPopupOpen ? 'profile-popup active' : 'profile-popup'">
       <li>
-        <a [routerLink]="['/settings']" (click)="menuOpen();openPopup(false)">
+        <a [routerLink]="['/setting']" (click)="menuOpen();openPopup(false)">
           <img src="assets/menu-icon-settings.png">
           <p>Settings</p>
         </a>

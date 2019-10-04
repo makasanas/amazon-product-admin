@@ -17,6 +17,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AntiAuthGuardService } from './services/anti-auth-guard.service';
 import { SecureService } from './secure/secure.service';
 import { UserService } from './secure/user/user.service';
+import { SettingsService } from './secure/settings/settings.service';
 
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
@@ -32,6 +33,7 @@ import { SetNewPasswordComponent } from './public/set-new-password/set-new-passw
 import { PublicComponent } from './public/public.component';
 import { SecureComponent } from './secure/secure.component';
 import { UserComponent } from './secure/user/user.component';
+import { SettingsComponent } from './secure/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { UserComponent } from './secure/user/user.component';
     SetNewPasswordComponent,
     PublicComponent,
     SecureComponent,
-    UserComponent
+    UserComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { UserComponent } from './secure/user/user.component';
     AntiAuthGuardService,
     LoginService,
     SecureService,
-    UserService
+    UserService,
+    SettingsService
   ],
   bootstrap: [AppComponent],
 })
