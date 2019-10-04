@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --base-href /admin/ --port 4000 ",
-    "build": "ng build --prod --no-delete-output-path --aot --base-href /admin/",
+    "start": "ng serve ---port 4000",
+    "build": "ng build --prod --no-delete-output-path --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
