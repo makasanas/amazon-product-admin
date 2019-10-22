@@ -804,6 +804,11 @@ table {
   margin: 0 auto;
 }
 
+.ngx-datatable.fixed-header .datatable-header {
+  border-bottom: 1px solid #000;
+  background: #fff;
+}
+
 .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
   font-weight: 500;
   color: #343A57;
@@ -835,4 +840,11 @@ ngx-datatable {
   z-index: 2;
   position: absolute;
   background: white;
+}
+
+
+ngx-datatable{
+  datatable-body{
+    margin-bottom: -8px;
+  }
 }
