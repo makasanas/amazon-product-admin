@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "./user.service";
-import { environment } from './../../../environments/environment';
+import { DeletedUserService } from './deleted-user.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+  selector: 'app-deleted-user',
+  templateUrl: './deleted-user.component.html',
+  styleUrls: ['./deleted-user.component.scss']
 })
-export class UserComponent implements OnInit {
+export class DeletedUserComponent implements OnInit {
+
   public users: any = [];
   public page = {
     count: 0,
@@ -17,7 +17,8 @@ export class UserComponent implements OnInit {
   }
   public loading = false;
 
-  constructor(private userService: UserService) {
+
+  constructor(private deletedUserService: DeletedUserService) {
     this.page.offset = 0;
     this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
   }
@@ -28,7 +29,8 @@ export class UserComponent implements OnInit {
 
   getUsers(page) {
     this.loading = true;
-    this.userService.getUsers(page.offset + 1, page.limit).subscribe((res) => {
+
+    this.deletedUserService.getUsers(page.offset + 1, page.limit).subscribe((res) => {
       this.users = res.data.users;
       this.page.count = res.data.count;
       this.loading = false;
@@ -41,17 +43,6 @@ export class UserComponent implements OnInit {
       });
     }, err => {
       this.loading = false;
-    });
-  }
-
-  getAccess(row) {
-    this.userService.getAccessToken(row.shopUrl).subscribe((res) => {
-      console.log(res.data);
-      console.log(window.location);
-      let url = environment.appUrl + '/app/auth?token=' + res.data.token;
-      console.log(url);
-      window.open(url, '_blank');
-    }, err => {
     });
   }
 

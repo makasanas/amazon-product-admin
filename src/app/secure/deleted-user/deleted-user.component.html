@@ -1,0 +1,115 @@
+<div class="loading-grid" *ngIf="loading">
+    <app-loading></app-loading>
+</div>
+<div *ngIf="!loading">
+    <div class="row-per-page">
+        <form>
+            <div class="single-input">
+                <div class="input">
+                    <label>Row per page</label>
+                    <select name="ipp" id="ipp" (change)="pageLimit()" [(ngModel)]="page.limit">
+                        <option [value]="100">Items per page</option>
+                        <option [value]="10">10</option>
+                        <option [value]="25">25</option>
+                        <option [value]="50">50</option>
+                        <option [value]="100">100</option>
+                        <option [value]="250">250</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ngx-datatable class="material" [rows]="users" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true"
+        [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count"
+        (page)="getUsers($event)">
+        <ngx-datatable-column [resizeable]="false" [width]="40">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                No
+            </ng-template>
+            <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                {{rowIndex + 1}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Name
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <a [href]="'https://'+row.domain" target="_blank">{{row.storeName}}</a>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false" [width]="250">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Email
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.email}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Phone
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.phone}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Country Name
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.country_name}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Shopify Plan
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.plan_display_name}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Current Plan
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.recurringPlanName}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Product Count
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.productCount}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                trial days
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.trial_days}}
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                created
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.created | date:'dd/MM/yyyy'}}
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -18,6 +17,8 @@ import { AntiAuthGuardService } from './services/anti-auth-guard.service';
 import { SecureService } from './secure/secure.service';
 import { UserService } from './secure/user/user.service';
 import { SettingsService } from './secure/settings/settings.service';
+import { DeletedUserService } from './secure/deleted-user/deleted-user.service';
+
 
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
@@ -34,6 +35,7 @@ import { PublicComponent } from './public/public.component';
 import { SecureComponent } from './secure/secure.component';
 import { UserComponent } from './secure/user/user.component';
 import { SettingsComponent } from './secure/settings/settings.component';
+import { DeletedUserComponent } from './secure/deleted-user/deleted-user.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { SettingsComponent } from './secure/settings/settings.component';
     PublicComponent,
     SecureComponent,
     UserComponent,
-    SettingsComponent
+    SettingsComponent,
+    DeletedUserComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +69,8 @@ import { SettingsComponent } from './secure/settings/settings.component';
     LoginService,
     SecureService,
     UserService,
-    SettingsService
+    SettingsService,
+    DeletedUserService
   ],
   bootstrap: [AppComponent],
 })

@@ -10,7 +10,7 @@ export class AntiAuthGuardService implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (localStorage.getItem('token')) {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/user']);
             return false
         }
         else {

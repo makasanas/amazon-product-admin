@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { SidebarsService } from './sidebar.service'
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,6 +12,7 @@ export class SidebarComponent implements OnInit {
   public ismenuOpen: boolean = false;
   public isPopupOpen: boolean = false;
   public storeName: String;
+  public appName: String = environment.appName;
 
   constructor(private sidebarsService: SidebarsService, private eRef: ElementRef) { }
 

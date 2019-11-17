@@ -5,25 +5,25 @@
   <div class="sidebar-title">
     <div class="image">
       <a routerLink="/">
-        <img src="assets/logo-white.png">
+        <h1>{{appName}}</h1>
+        <!-- <img src="assets/logo-white.png"> -->
         <p>ADMIN</p>
       </a>
     </div>
   </div>
   <ul>
-    <li routerLinkActive="active" [routerLink]="['/dashboard']" (click)="openPopup(false)">
-      <a (click)="menuOpen()">
-        <img src="assets/menu-icon-list.png">
-        <p>Dashboard</p>
-      </a>
-    </li>
     <li routerLinkActive="active" [routerLink]="['/user']" (click)="openPopup(false)">
       <a (click)="menuOpen()">
         <img src="assets/menu-icon-verified.png">
         <p>User</p>
       </a>
     </li>
-
+    <li routerLinkActive="active" [routerLink]="['/deleteduser']" (click)="openPopup(false)">
+      <a (click)="menuOpen()">
+        <img src="assets/menu-icon-verified.png">
+        <p>Deleted User</p>
+      </a>
+    </li>
     <li routerLinkActive="active" class="user-profile" (click)="openPopup(true)">
       <a>
         <img src="assets/menu-icon-user.png">
@@ -38,7 +38,7 @@
         </a>
       </li>
       <li>
-        <a [routerLink]="['/install']" (click)="menuOpen();openPopup(false);logout()">
+        <a [routerLink]="['/login']" (click)="menuOpen();openPopup(false);logout()">
           <img src="assets/menu-icon-logout.png">
           <p>Logout</p>
         </a>

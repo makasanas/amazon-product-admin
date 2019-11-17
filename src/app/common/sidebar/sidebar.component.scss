@@ -24,11 +24,14 @@ $brand-hover-color: #276996;
 }
 
 .sidebar-title {
-  padding: 40px;
-
+  padding: 40px 0px;
   .image {
-    width: 120px;
     margin: 0 auto;
+    display: block;
+    text-align: center;
+    a{
+      color: white;
+    }
   }
 }
 
@@ -259,4 +262,8 @@ $brand-hover-color: #276996;
   span {
     font-size: 14px;
   }
+}
+
+h1{
+  font-size: 30px;
 }

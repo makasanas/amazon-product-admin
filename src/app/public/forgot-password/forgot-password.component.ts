@@ -42,7 +42,6 @@ export class ForgotPasswordComponent implements OnInit {
       this._fpService.forgotPassword(this.data).subscribe((res) => {
         // console.log(res);
         this.linkSent = true;
-        // this.router.navigate(['/productlist']);
       }, err => {
         this.router.navigate(['/forgot-password']);
         this.serverErrorr = JSON.parse(err._body).message;
