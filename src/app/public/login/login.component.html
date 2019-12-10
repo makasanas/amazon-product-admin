@@ -1,51 +1,63 @@
 <div class="login-content">
-  <div class="login-header">
+  <div class="login-header text-center">
 
     <a routerLink="/">
       <img src="assets/Logo.png">
     </a>
   </div>
   <div class="form login-form">
-    <h2>Login</h2>
+    <h2 class="text-center">Login</h2>
     <p class="invalid" *ngIf="serverErrorrCode != 400">{{serverErrorr}}</p>
 
     <form [formGroup]="loginForm">
       <div class="hero_form form-group">
-        <div class="form-field">
-          <label>Email</label>
-          <input type="text" class="form-control" placeholder="Enter your shop URL" formControlName="email"
-            [ngClass]="{ 'is-invalid': loginForm.controls.email.errors }" />
-        </div>
-        <div *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched) && loginForm.get('email').errors"
-          class="invalid">
-          <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+
+        <div class="single-input">
+          <div class="input">
+            <label>Email</label>
+            <input type="text" class="form-control" placeholder="Enter your shop URL" formControlName="email"
+              [ngClass]="{ 'is-invalid': loginForm.controls.email.errors }" />
+          </div>
+          <div *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched) && loginForm.get('email').errors"
+            class="invalid">
+            <div *ngIf="loginForm.controls.email.errors.required">Email is required</div>
+          </div>
         </div>
 
-        <div class="form-field">
-          <label>Password</label>
-          <input type="password" class="form-control" placeholder="Enter your Password" formControlName="password"
-            [ngClass]="{ 'is-invalid': loginForm.controls.password.errors }" />
+        <div class="single-input">
+          <div class="input">
+            <label>Password</label>
+            <input type="password" class="form-control" placeholder="Enter your Password" formControlName="password"
+              [ngClass]="{ 'is-invalid': loginForm.controls.password.errors }" />
+          </div>
+          <div
+            *ngIf="(loginForm.get('password').dirty || loginForm.get('password').touched) && loginForm.get('password').errors"
+            class="invalid">
+            <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
+            <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
         </div>
 
-        <div
-          *ngIf="(loginForm.get('password').dirty || loginForm.get('password').touched) && loginForm.get('password').errors"
-          class="invalid">
-          <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
-          <div *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
+        <div class="single-input">
+          <div class="input">
+            <label>Admin key</label>
+            <input type="text" class="form-control" placeholder="Enter your shop URL" formControlName="adminKey"
+              [ngClass]="{ 'is-invalid': loginForm.controls.adminKey.errors }" />
+          </div>
+          <div
+            *ngIf="(loginForm.get('adminKey').dirty || loginForm.get('adminKey').touched) && loginForm.get('adminKey').errors"
+            class="invalid">
+            <div *ngIf="loginForm.controls.adminKey.errors.required">Admin Key is required</div>
+          </div>
         </div>
 
-        <div class="form-field">
-          <label>Admin key</label>
-          <input type="text" class="form-control" placeholder="Enter your shop URL" formControlName="adminKey"
-            [ngClass]="{ 'is-invalid': loginForm.controls.adminKey.errors }" />
-        </div>
-        <div *ngIf="(loginForm.get('adminKey').dirty || loginForm.get('adminKey').touched) && loginForm.get('adminKey').errors"
-          class="invalid">
-          <div *ngIf="loginForm.controls.adminKey.errors.required">Admin Key is required</div>
+        <div class="form-field right mb-20 text-center"> <a [routerLink]="['/forgot-password']">Forgot Password? </a>
         </div>
 
-        <div class="form-field right"> <a [routerLink]="['/forgot-password']">Forgot Password? </a></div>
-        <button (click)="login()">Login</button>
+        <div class="single-input text-center">
+          <button (click)="login()">Login</button>
+        </div>
+
       </div>
     </form>
   </div>
