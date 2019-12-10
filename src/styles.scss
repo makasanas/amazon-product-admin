@@ -234,6 +234,13 @@ table {
   margin-bottom: 20px;
 }
 
+.datatable-body-cell-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .pagination {
   display: flex;
 

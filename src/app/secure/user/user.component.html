@@ -20,9 +20,9 @@
     </form>
   </div>
   <ngx-datatable class="material" [rows]="users" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true"
-    [rowHeight]="'auto'" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count"
-    (page)="getUsers($event)">
-    <ngx-datatable-column [resizeable]="false" [width]="40">
+    [rowHeight]="50" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count"
+    [scrollbarH]="true" (page)="getUsers($event)">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="50">
       <ng-template let-column="column" ngx-datatable-header-template>
         No
       </ng-template>
@@ -31,25 +31,25 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="true" [width]="250">
       <ng-template let-column="column" ngx-datatable-header-template>
         Name
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
-        <a [href]="'https://'+row.domain" target="_blank">{{row.storeName}}</a>
+        <a [href]="'https://'+row.domain" target="_blank" [title]="row.storeName">{{row.storeName}}</a>
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false" [width]="250">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="true" [width]="250">
       <ng-template let-column="column" ngx-datatable-header-template>
         Email
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.email}}
+        <span [title]="row.email">{{row.email}}</span>
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
       <ng-template let-column="column" ngx-datatable-header-template>
         Phone
       </ng-template>
@@ -58,7 +58,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
       <ng-template let-column="column" ngx-datatable-header-template>
         Country Name
       </ng-template>
@@ -67,7 +67,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
       <ng-template let-column="column" ngx-datatable-header-template>
         Shopify Plan
       </ng-template>
@@ -76,7 +76,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="105">
       <ng-template let-column="column" ngx-datatable-header-template>
         Current Plan
       </ng-template>
@@ -85,7 +85,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="120">
       <ng-template let-column="column" ngx-datatable-header-template>
         Product Count
       </ng-template>
@@ -94,7 +94,7 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="95">
       <ng-template let-column="column" ngx-datatable-header-template>
         trial days
       </ng-template>
@@ -103,16 +103,16 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="120">
       <ng-template let-column="column" ngx-datatable-header-template>
-        created
+        Created
       </ng-template>
       <ng-template let-row="row" ngx-datatable-cell-template>
         {{row.created | date:'dd/MM/yyyy'}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column [resizeable]="false">
+    <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="130">
       <ng-template let-column="column" ngx-datatable-header-template>
         Get Access
       </ng-template>
