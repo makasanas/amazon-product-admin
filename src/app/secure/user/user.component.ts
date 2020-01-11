@@ -29,7 +29,8 @@ export class UserComponent implements OnInit {
   getUsers(page) {
     this.loading = true;
     this.userService.getUsers(page.offset + 1, page.limit).subscribe((res) => {
-      this.users = res.data.users;
+      this.users = res.data.user;
+      this.page = page;
       this.page.count = res.data.count;
       this.loading = false;
 
@@ -57,7 +58,10 @@ export class UserComponent implements OnInit {
 
 
   pageLimit() {
-    this.getUsers(this.page);
+    this.page.offset = 0;
+
     localStorage.setItem('pageLimit', this.page.limit.toString());
+    this.getUsers(this.page);
+    console.log(this.page);
   }
 }

@@ -18,6 +18,7 @@ import { SecureService } from './secure/secure.service';
 import { UserService } from './secure/user/user.service';
 import { SettingsService } from './secure/settings/settings.service';
 import { DeletedUserService } from './secure/deleted-user/deleted-user.service';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -50,7 +51,8 @@ import { DeletedUserComponent } from './secure/deleted-user/deleted-user.compone
     SecureComponent,
     UserComponent,
     SettingsComponent,
-    DeletedUserComponent
+    DeletedUserComponent,
+    TimeAgoPipe
   ],
   imports: [
     BrowserModule,

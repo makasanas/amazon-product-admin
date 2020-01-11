@@ -21,17 +21,17 @@
     </div>
     <ngx-datatable class="material" [rows]="users" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true"
         [rowHeight]="50" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count"
-        [scrollbarH]="true" (page)="getUsers($event)">
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="50">
+        [scrollbarH]="false" (page)="getUsers($event)">
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="100">
             <ng-template let-column="column" ngx-datatable-header-template>
                 No
             </ng-template>
             <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                {{rowIndex + 1}}
+                {{(rowIndex + 1) + ( page.offset * page.limit)}}
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true" [width]="250">
+        <ngx-datatable-column >
             <ng-template let-column="column" ngx-datatable-header-template>
                 Name
             </ng-template>
@@ -40,7 +40,7 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true" [width]="250">
+        <ngx-datatable-column >
             <ng-template let-column="column" ngx-datatable-header-template>
                 Email
             </ng-template>
@@ -49,30 +49,12 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                Phone
-            </ng-template>
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.phone}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="105">
             <ng-template let-column="column" ngx-datatable-header-template>
                 Country Name
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
                 {{row.country_name}}
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                Shopify Plan
-            </ng-template>
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.plan_display_name}}
             </ng-template>
         </ngx-datatable-column>
 
@@ -108,9 +90,8 @@
                 Deleted
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.updated | date:'dd/MM/yyyy'}}
+                {{row.updated |timeAgo}}
             </ng-template>
         </ngx-datatable-column>
-
     </ngx-datatable>
 </div>
