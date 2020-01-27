@@ -29,12 +29,12 @@ export class DeletedUserComponent implements OnInit {
 
   getUsers(page) {
     this.loading = true;
-
     this.deletedUserService.getUsers(page.offset + 1, page.limit).subscribe((res) => {
-      this.users = res.data.users;
+      this.users = res.data.deletedUser;
+      this.page = page;
       this.page.count = res.data.count;
       this.loading = false;
-
+      
       this.users.forEach(user => {
         var today = new Date(new Date().toJSON().slice(0, 10));
         let diffTime = Math.abs(today.getTime() - new Date(user.trial_start).getTime());
@@ -48,7 +48,8 @@ export class DeletedUserComponent implements OnInit {
 
 
   pageLimit() {
-    this.getUsers(this.page);
+    this.page.offset = 0;
     localStorage.setItem('pageLimit', this.page.limit.toString());
+    this.getUsers(this.page);
   }
 }

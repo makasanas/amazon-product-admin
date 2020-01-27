@@ -15,7 +15,7 @@
         <div class="single-input">
           <div class="input">
             <label>Email</label>
-            <input type="text" class="form-control" placeholder="Enter your shop URL" formControlName="email"
+            <input type="text" class="form-control" placeholder="Enter Email" formControlName="email"
               [ngClass]="{ 'is-invalid': loginForm.controls.email.errors }" />
           </div>
           <div *ngIf="(loginForm.get('email').dirty || loginForm.get('email').touched) && loginForm.get('email').errors"
