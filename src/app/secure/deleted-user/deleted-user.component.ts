@@ -25,21 +25,27 @@ export class DeletedUserComponent implements OnInit {
 
   ngOnInit() {
     this.getUsers(this.page);
+    console.log(this.users);
   }
 
   getUsers(page) {
     this.loading = true;
     this.deletedUserService.getUsers(page.offset + 1, page.limit).subscribe((res) => {
       this.users = res.data.deletedUser;
+      console.log(this.users);
       this.page = page;
       this.page.count = res.data.count;
       this.loading = false;
+
       
       this.users.forEach(user => {
         var today = new Date(new Date().toJSON().slice(0, 10));
         let diffTime = Math.abs(today.getTime() - new Date(user.trial_start).getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         user.trial_days = user.trial_days - diffDays > 0 ? user.trial_days - diffDays : 0;
+        let dt1 = new Date(user.created);
+        let dt2 = new Date(user.updated);
+        user.appUsed = Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) / (1000 * 60 * 60 * 24));
       });
     }, err => {
       this.loading = false;
