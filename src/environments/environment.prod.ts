@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: "https://sampleapp-api.webrexstudio.com/",
-  appUrl: "https://sampleapp.webrexstudio.com",
-  appName: "Sample App"
+  apiUrl: "https://currency-converter-api.webrexstudio.com/",
+  appUrl: "https://currency-converter.webrexstudio.com",
+  appName: "Currency Converter"
 };
