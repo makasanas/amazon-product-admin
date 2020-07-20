@@ -43,22 +43,20 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     // this.getUsers(this.page);
     this.getBrandData(this.page);
-      console.log(this.countryData)
   }
 
   getBrandData(page) {
-    this.userService.getBrandData().subscribe((res)=> {
-      console.log(res);
+    this.userService.getBrandData(page.offset + 1, page.limit).subscribe((res)=> {
       this.brandData = res.data.brand;
-      console.log(this.brandData[0].title);
       this.page.count = res.data.count;
-
       this.page = page;
+      this.page.count = res.data.count;
+      this.loading = false;
     })
   }
 
   updateCountry(value) {
-    this.loading = true;
+    // this.loading = true;
     let Data = {
       "title" : value.title , 
       "country" : {
@@ -68,9 +66,9 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.updateData(Data).subscribe((res)=>{
-      window.location.reload()
+      // window.location.reload()
     }),error  => {
-      window.location.reload()
+      // window.location.reload()
     }
   }
 

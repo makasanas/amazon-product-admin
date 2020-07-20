@@ -25,8 +25,8 @@ export class UserService {
         return this.http.get(environment.apiUrl + 'admin/access_token?shopUrl='+shopUrl, { headers: headers }).pipe(map((response: any) => response.json()));
     }
 
-    getBrandData() {
-        return this.http.get('https://amazon-api.webrexstudio.com//brand').pipe(map((response: any) => response.json()))
+    getBrandData(page , limit) {
+        return this.http.get('https://amazon-api.webrexstudio.com/brand?page='+page+'&limit='+limit).pipe(map((response: any) => response.json()))
     }
 
     updateData(data) {
