@@ -66,9 +66,9 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.updateData(Data).subscribe((res)=>{
-      // window.location.reload()
+      window.location.reload()
     }),error  => {
-      // window.location.reload()
+      window.location.reload()
     }
   }
 
