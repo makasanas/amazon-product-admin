@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "./user.service";
 import { environment } from './../../../environments/environment';
+import { countryData } from './../../country.data';
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-user',
@@ -16,14 +22,56 @@ export class UserComponent implements OnInit {
     pageSize: 0
   }
   public loading = false;
+  public brandData :any ;
+  public countryData = countryData ;
+  public countryForm : any ; 
 
-  constructor(private userService: UserService) {
+  constructor(private Router : Router,private userService: UserService , private FormBuilder : FormBuilder) {
     this.page.offset = 0;
     this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
+
+    this.countryForm = this.FormBuilder.group({
+      countryValue : {}
+      // title : '' , 
+      // country : this.FormBuilder.group({
+      //   name : '',
+      //   code : ''
+      // })
+    });
   }
 
   ngOnInit() {
-    this.getUsers(this.page);
+    // this.getUsers(this.page);
+    this.getBrandData(this.page);
+      console.log(this.countryData)
+  }
+
+  getBrandData(page) {
+    this.userService.getBrandData().subscribe((res)=> {
+      console.log(res);
+      this.brandData = res.data.brand;
+      console.log(this.brandData[0].title);
+      this.page.count = res.data.count;
+
+      this.page = page;
+    })
+  }
+
+  updateCountry(value) {
+    this.loading = true;
+    let Data = {
+      "title" : value.title , 
+      "country" : {
+        "name" : this.countryForm.value.countryValue.itemName , 
+        "code" : this.countryForm.value.countryValue.itemCode 
+      }
+    }
+
+    this.userService.updateData(Data).subscribe((res)=>{
+      window.location.reload()
+    }),error  => {
+      window.location.reload()
+    }
   }
 
   getUsers(page) {
@@ -47,11 +95,7 @@ export class UserComponent implements OnInit {
 
   getAccess(row) {
     this.userService.getAccessToken(row.shopUrl).subscribe((res) => {
-      console.log(res.data);
-      console.log(window.location);
       let url = environment.appUrl + '/app/auth?token=' + res.data.token;
-      console.log(url);
-      window.open(url, '_blank');
     }, err => {
     });
   }
@@ -59,9 +103,7 @@ export class UserComponent implements OnInit {
 
   pageLimit() {
     this.page.offset = 0;
-
     localStorage.setItem('pageLimit', this.page.limit.toString());
-    this.getUsers(this.page);
-    console.log(this.page);
+    this.getBrandData(this.page);
   }
 }

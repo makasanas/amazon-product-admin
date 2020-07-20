@@ -24,4 +24,12 @@ export class UserService {
         this.createAuthorizationHeader(headers);
         return this.http.get(environment.apiUrl + 'admin/access_token?shopUrl='+shopUrl, { headers: headers }).pipe(map((response: any) => response.json()));
     }
+
+    getBrandData() {
+        return this.http.get('http://198.199.90.15:20001/brand').pipe(map((response: any) => response.json()))
+    }
+
+    updateData(data) {
+        return this.http.post('http://198.199.90.15:20001/update' , data).pipe(map((response: any) => response.json()))
+    }
 }
