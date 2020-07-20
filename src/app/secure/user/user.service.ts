@@ -26,10 +26,10 @@ export class UserService {
     }
 
     getBrandData() {
-        return this.http.get('http://198.199.90.15:20001/brand').pipe(map((response: any) => response.json()))
+        return this.http.get('https://amazon-api.webrexstudio.com//brand').pipe(map((response: any) => response.json()))
     }
 
     updateData(data) {
-        return this.http.post('http://198.199.90.15:20001/update' , data).pipe(map((response: any) => response.json()))
+        return this.http.post('https://amazon-api.webrexstudio.com/update' , data).pipe(map((response: any) => response.json()))
     }
 }
