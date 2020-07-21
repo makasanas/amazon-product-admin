@@ -59,7 +59,8 @@
                         <div class="single-input">
                             <div class="input">
                                 <select name="ipp" id="ipp" formControlName="countryValue" (change)="updateCountry(row)">
-                                <option selected disabled>Select Country</option>
+                                <option selected disabled >Select Country</option>
+                                <option selected  value="">Empty</option>
                                 <option  *ngFor="let data of countryData"  [ngValue]="data">{{data.itemName}}</option>
                               </select>
                             </div>
