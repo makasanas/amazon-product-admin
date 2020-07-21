@@ -56,7 +56,7 @@ export class UserComponent implements OnInit {
   }
 
   updateCountry(value) {
-    // this.loading = true;
+    this.loading = true;
     let Data = {
       "title" : value.title , 
       "country" : {
@@ -66,9 +66,11 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.updateData(Data).subscribe((res)=>{
-      window.location.reload()
+    this.loading = false;
+    this.getBrandData(this.page);
+    this.countryForm.reset()
     }),error  => {
-      window.location.reload()
+      // window.location.reload()
     }
   }
 
@@ -79,7 +81,6 @@ export class UserComponent implements OnInit {
       this.page = page;
       this.page.count = res.data.count;
       this.loading = false;
-
       this.users.forEach(user => {
         var today = new Date(new Date().toJSON().slice(0, 10));
         let diffTime = Math.abs(today.getTime() - new Date(user.trial_start).getTime());
