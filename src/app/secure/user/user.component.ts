@@ -51,12 +51,12 @@ export class UserComponent implements OnInit {
       this.page.count = res.data.count;
       this.page = page;
       this.page.count = res.data.count;
-      this.loading = false;
+      // this.loading = false;
     })
   }
 
   updateCountry(value) {
-    this.loading = true;
+    // this.loading = true;
     let Data = {
       "title" : value.title , 
       "country" : {
@@ -66,7 +66,7 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.updateData(Data).subscribe((res)=>{
-    this.loading = false;
+    // this.loading = false;
     this.getBrandData(this.page);
     this.countryForm.reset()
     }),error  => {
