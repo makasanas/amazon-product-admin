@@ -26,10 +26,10 @@ export class UserService {
     }
 
     getBrandData(page , limit) {
-        return this.http.get('https://amazon-api.webrexstudio.com/brand?page='+page+'&limit='+limit).pipe(map((response: any) => response.json()))
+        return this.http.get('https://api.buy-indian.in/brand?page='+page+'&limit='+limit).pipe(map((response: any) => response.json()))
     }
 
     updateData(data) {
-        return this.http.post('https://amazon-api.webrexstudio.com/update' , data).pipe(map((response: any) => response.json()))
+        return this.http.post('https://api.buy-indian.in/update' , data).pipe(map((response: any) => response.json()))
     }
 }
