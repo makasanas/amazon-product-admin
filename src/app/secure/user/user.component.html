@@ -35,7 +35,7 @@
                 Brand
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <a href="{{'https://www.google.com/search?q=' + row.title}}" target="_blank" [title]="row.title">{{row.title}}</a>
+                <a href="{{'https://www.google.com/search?q=' + row.document.title}}" target="_blank" [title]="row.document.title">{{row.document.title}}</a>
             </ng-template>
         </ngx-datatable-column>
 
@@ -44,7 +44,7 @@
                 Main Category
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span [title]="row.mainCategory">{{row.mainCategory}}</span>
+                <span [title]="row.document.mainCategory">{{row.document.mainCategory}}</span>
             </ng-template>
         </ngx-datatable-column>
 
@@ -54,7 +54,7 @@
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
                 <div class="country">
-                    <span *ngIf="row.country">{{row.country.name}}</span>
+                    <span *ngIf="row.document.country">{{row.document.country.name}}</span>
                     <form [formGroup]="countryForm">
                         <div class="single-input">
                             <div class="input">
