@@ -29,6 +29,10 @@ export class UserService {
         return this.http.get('https://api.buy-indian.in/brand?page='+page+'&limit='+limit).pipe(map((response: any) => response.json()))
     }
 
+    getCategoryData(page , limit) {
+        return this.http.get('https://api.buy-indian.in/catogary?search=&page='+page+'&limit='+limit).pipe(map((response: any) => response.json()))
+    }
+
     updateData(data) {
         return this.http.post('https://api.buy-indian.in/update' , data).pipe(map((response: any) => response.json()))
     }

@@ -4,24 +4,23 @@
 <div *ngIf="!loading">
     <div class="row-per-page">
         <form>
-            <div class="single-input">
+            <div class="three-input">
                 <div class="input">
                     <label>Row per page</label>
                     <select name="ipp" id="ipp" (change)="pageLimit()" [(ngModel)]="page.limit">
-                        <option [value]="100">Items per page</option>
-                        <option [value]="10">10</option>
-                        <option [value]="25">25</option>
-                        <option [value]="50">50</option>
-                        <option [value]="100">100</option>
-                        <option [value]="250">250</option>
-                    </select>
+            <option [value]="100">Items per page</option>
+            <option [value]="10">10</option>
+            <option [value]="25">25</option>
+            <option [value]="50">50</option>
+            <option [value]="100">100</option>
+            <option [value]="250">250</option>
+          </select>
                 </div>
+
             </div>
         </form>
     </div>
-    <ngx-datatable class="material" [rows]="users" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true"
-        [rowHeight]="50" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count"
-        [scrollbarH]="false" (page)="getUsers($event)">
+    <ngx-datatable class="material" [rows]="categoryData" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="50" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count" [scrollbarH]="false" (page)="getCategoryData($event)">
         <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="100">
             <ng-template let-column="column" ngx-datatable-header-template>
                 No
@@ -31,52 +30,58 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="160">
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
             <ng-template let-column="column" ngx-datatable-header-template>
-                Name
+                Title
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <a [href]="'https://'+row.domain" target="_blank" [title]="row.storeName">{{row.storeName}}</a>
+                <a href="{{'https://www.google.com/search?q=' + row.document.title}}" target="_blank" [title]="row.document.title">{{row.document.title}}</a>
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column >
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
             <ng-template let-column="column" ngx-datatable-header-template>
-                Email
+                Display Name
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span [title]="row.email">{{row.email}}</span>
+                <span [title]="row.document.mainCategory">{{row.document.DisplayName}}</span>
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="100">
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="105">
             <ng-template let-column="column" ngx-datatable-header-template>
-                Country Name
+                ContextFreeName
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.country_name}}
+                {{row.document.ContextFreeName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ng-template let-column="column" ngx-datatable-header-template>
+            Country
+        </ng-template>
+        
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <!-- <div class="country">
+                    <span *ngIf="row.document.country">{{row.document.country.name}}</span>
+                    <form [formGroup]="countryForm">
+                        <div class="single-input">
+                            <div class="input">
+                                <select name="ipp" id="ipp" formControlName="countryValue" (change)="updateCountry(row)">
+                                <option selected disabled >Select Country</option>
+                                <option selected  value="">Empty</option>
+                                <option  *ngFor="let data of countryData"  [ngValue]="data">{{data.itemName}}</option>
+                              </select>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="95">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                Current Plan
-            </ng-template>
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.recurringPlanName}}
-            </ng-template>
-        </ngx-datatable-column>
+  
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="80">
-            <ng-template let-column="column" ngx-datatable-header-template>
-                Used Days
-            </ng-template>
-            <ng-template let-row="row" ngx-datatable-cell-template>
-                <span>{{row.appUsed}}</span>
-            </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="100">
+        <!--  <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="120">
             <ng-template let-column="column" ngx-datatable-header-template>
                 Product Count
             </ng-template>
@@ -96,11 +101,20 @@
 
         <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="120">
             <ng-template let-column="column" ngx-datatable-header-template>
-                Deleted
+                Created
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                {{row.updated |timeAgo}}
+                {{row.created |timeAgo}}
             </ng-template>
         </ngx-datatable-column>
+
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="130">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Get Access
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <button (click)="getAccess(row)">Access</button>
+            </ng-template>
+        </ngx-datatable-column> -->
     </ngx-datatable>
 </div>

@@ -32,11 +32,6 @@ export class UserComponent implements OnInit {
 
     this.countryForm = this.FormBuilder.group({
       countryValue : {}
-      // title : '' , 
-      // country : this.FormBuilder.group({
-      //   name : '',
-      //   code : ''
-      // })
     });
   }
 
@@ -51,12 +46,10 @@ export class UserComponent implements OnInit {
       this.page.count = res.data.count;
       this.page = page;
       this.page.count = res.data.count;
-      // this.loading = false;
     })
   }
 
   updateCountry(value) {
-    // this.loading = true;
     let Data = {
       "title" : value.document.title , 
       "country" : {
@@ -66,11 +59,9 @@ export class UserComponent implements OnInit {
     }
 
     this.userService.updateData(Data).subscribe((res)=>{
-    // this.loading = false;
     this.getBrandData(this.page);
     this.countryForm.reset()
     }),error  => {
-      // window.location.reload()
     }
   }
 

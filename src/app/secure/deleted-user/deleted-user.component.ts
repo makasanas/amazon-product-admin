@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DeletedUserService } from './deleted-user.service';
+import { UserService } from "././../user/user.service";
+import { countryData } from './../../country.data';
+import { FormGroup, FormBuilder, FormControl, FormArray, Validators, FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-deleted-user',
@@ -18,14 +25,54 @@ export class DeletedUserComponent implements OnInit {
   public loading = false;
 
 
-  constructor(private deletedUserService: DeletedUserService) {
+  constructor(private Router : Router, private userService: UserService , private deletedUserService: DeletedUserService, private FormBuilder : FormBuilder) {
+
+    this.countryForm = this.FormBuilder.group({
+      countryValue : {}
+    });
+
     this.page.offset = 0;
     this.page.limit = localStorage.getItem('pageLimit') ? parseInt(localStorage.getItem('pageLimit')) : 10;
   }
 
+  public countryData = countryData ;
+  public countryForm : any ; 
+  public categoryData :any ;
+
+
+
   ngOnInit() {
-    this.getUsers(this.page);
-    console.log(this.users);
+    // this.getUsers(this.page);
+    // console.log(this.users);
+    this.getCategoryData(this.page);
+
+  }
+
+
+  getCategoryData(page) {
+    this.userService.getCategoryData(page.offset + 1, page.limit).subscribe((res)=> {
+      console.log(res)
+      this.categoryData = res.data.category;
+      this.page.count = res.data.count;
+      this.page = page;
+      this.page.count = res.data.count;
+    })
+  }
+
+  updateCountry(value) {
+    let Data = {
+      "title" : value.document.title , 
+      "country" : {
+        "name" : this.countryForm.value.countryValue.itemName , 
+        "code" : this.countryForm.value.countryValue.itemCode 
+      }
+    }
+
+    this.userService.updateData(Data).subscribe((res)=>{
+    this.getCategoryData(this.page);
+    this.countryForm.reset()
+    }),error  => {
+    }
   }
 
   getUsers(page) {
@@ -56,6 +103,6 @@ export class DeletedUserComponent implements OnInit {
   pageLimit() {
     this.page.offset = 0;
     localStorage.setItem('pageLimit', this.page.limit.toString());
-    this.getUsers(this.page);
+    this.getCategoryData(this.page);
   }
 }

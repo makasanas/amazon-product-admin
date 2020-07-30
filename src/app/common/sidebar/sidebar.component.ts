@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
 
   getUser() {
     this.sidebarsService.getUser().subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       // this.storeName = res.data.name;
     }, err => {
     });
