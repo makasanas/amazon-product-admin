@@ -20,7 +20,7 @@
             </div>
         </form>
     </div>
-    <ngx-datatable class="material" [rows]="categoryData" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="50" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count" [scrollbarH]="false" (page)="getCategoryData($event)">
+    <ngx-datatable class="material" [rows]="categoryData" [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" [rowHeight]="100" [columnMode]="'force'" [limit]="page.limit" [offset]="page.offset" [count]="page.count" [scrollbarH]="false" (page)="getCategoryData($event)">
         <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="100">
             <ng-template let-column="column" ngx-datatable-header-template>
                 No
@@ -48,7 +48,7 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="105">
+        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="115">
             <ng-template let-column="column" ngx-datatable-header-template>
                 ContextFreeName
             </ng-template>
