@@ -47,7 +47,6 @@ export class UserComponent implements OnInit {
 
   getBrandData(page) {
     this.userService.getBrandData(page.offset + 1, page.limit).subscribe((res)=> {
-      console.log(res.data.brand)
       this.brandData = res.data.brand;
       this.page.count = res.data.count;
       this.page = page;
@@ -57,7 +56,6 @@ export class UserComponent implements OnInit {
   }
 
   updateCountry(value) {
-    console.log(this.countryForm.value.countryValue.itemName)
     // this.loading = true;
     let Data = {
       "title" : value.document.title , 
