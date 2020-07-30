@@ -48,34 +48,34 @@
             </ng-template>
         </ngx-datatable-column>
 
-        <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="115">
+        <!-- <ngx-datatable-column [resizeable]="false" [canAutoResize]="false" [width]="115">
             <ng-template let-column="column" ngx-datatable-header-template>
                 ContextFreeName
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
                 {{row.document.ContextFreeName}}
             </ng-template>
-        </ngx-datatable-column>
-        <ng-template let-column="column" ngx-datatable-header-template>
-            Country
-        </ng-template>
+        </ngx-datatable-column> -->
         
         <ngx-datatable-column [resizeable]="false" [canAutoResize]="true">
+            <ng-template let-column="column" ngx-datatable-header-template>
+                Action
+            </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <!-- <div class="country">
+                <div class="country">
                     <span *ngIf="row.document.country">{{row.document.country.name}}</span>
                     <form [formGroup]="countryForm">
-                        <div class="single-input">
+                        <div class="two-input">
                             <div class="input">
-                                <select name="ipp" id="ipp" formControlName="countryValue" (change)="updateCountry(row)">
-                                <option selected disabled >Select Country</option>
-                                <option selected  value="">Empty</option>
-                                <option  *ngFor="let data of countryData"  [ngValue]="data">{{data.itemName}}</option>
-                              </select>
+                                <input type="number" name="" id="">
+                             
+                            </div>
+                            <div class="input">
+                                <button>Delete</button>
                             </div>
                         </div>
                     </form>
-                </div> -->
+                </div>
             </ng-template>
         </ngx-datatable-column>
 
@@ -117,4 +117,8 @@
             </ng-template>
         </ngx-datatable-column> -->
     </ngx-datatable>
+
+    <div class="save">
+        <button class="btn">Save</button>
+    </div>
 </div>
