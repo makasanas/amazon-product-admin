@@ -43,7 +43,7 @@ export class UserService {
   getCategoryData(page, limit) {
     return this.http
       .get(
-        "https://api.buy-indian.in/catogary?search=&page=" +
+        "https://api.buy-indian.in/category?search=&page=" +
           page +
           "&limit=" +
           limit
@@ -59,7 +59,7 @@ export class UserService {
 
   categoryUpdateData(data) {
     return this.http
-      .post("https://api.buy-indian.in/catogary/update", data)
+      .post("https://api.buy-indian.in/category/update", data)
       .pipe(map((response: any) => response.json()));
   }
 }
